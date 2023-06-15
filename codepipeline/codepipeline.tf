@@ -21,16 +21,33 @@ resource "aws_codepipeline" "demo" {
       name             = "Source"
       category         = "Source"
       owner            = "AWS"
-      provider         = "CodeCommit"
+      provider         = "CodeStarSourceConnection"
       version          = "1"
       output_artifacts = ["demo-docker-source"]
-
       configuration = {
-        RepositoryName = aws_codecommit_repository.demo.repository_name
-        BranchName     = "master"
+        ConnectionArn    = "arn:aws:codestar-connections:eu-west-1:474165608704:connection/06f9395c-8aef-4f4c-a6db-ea10db9c9f17"
+        FullRepositoryId = "aw-birdgang/nestjs-api-pipeline"
+        BranchName       = "develop"
       }
     }
   }
+
+#  stage {
+#    name = "Source"
+#
+#    action {
+#      name             = "Source"
+#      category         = "Source"
+#      owner            = "AWS"
+#      provider         = "CodeCommit"
+#      version          = "1"
+#      output_artifacts = ["demo-docker-source"]
+#      configuration = {
+#        RepositoryName = aws_codecommit_repository.demo.repository_name
+#        BranchName     = "master"
+#      }
+#    }
+#  }
 
   stage {
     name = "Build"
