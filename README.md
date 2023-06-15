@@ -56,6 +56,7 @@ $ tfenv use latest
 https://developer.hashicorp.com/terraform/cli/run
 
 $ terraform init
+$ ssh-keygen -f mykey
 $ terraform plan
 $ terraform apply
 $ terraform destroy
